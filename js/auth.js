@@ -5,11 +5,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const adminPage = body && body.dataset.page === "admin";
   const committeePage = body && body.dataset.page === "committee";
 
-  const isNestedPage = window.location.pathname.includes("/admin/") || window.location.pathname.includes("/committee/");
+  const isNestedPage =
+    window.location.pathname.includes("/admin/") ||
+    window.location.pathname.includes("/committee/");
   const loginUrl = isNestedPage ? "../login.html" : "login.html";
   const dashboardUrl = isNestedPage ? "../dashboard.html" : "dashboard.html";
-  const adminDashboardUrl = isNestedPage ? "../admin/dashboard.html" : "admin/dashboard.html";
-  const committeeDashboardUrl = isNestedPage ? "../committee/dashboard.html" : "committee/dashboard.html";
+  const adminDashboardUrl = isNestedPage
+    ? "../admin/dashboard.html"
+    : "admin/dashboard.html";
+  const committeeDashboardUrl = isNestedPage
+    ? "../committee/dashboard.html"
+    : "committee/dashboard.html";
 
   async function redirectByRole(role) {
     const normalized = (role || "public").toLowerCase();
@@ -105,7 +111,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const name = document.getElementById("registerName").value.trim();
         const email = document.getElementById("registerEmail").value.trim();
         const password = document.getElementById("registerPassword").value;
-        const confirmPassword = document.getElementById("registerConfirmPassword").value;
+        const confirmPassword = document.getElementById(
+          "registerConfirmPassword",
+        ).value;
 
         if (!name || !email || !password || !confirmPassword) {
           showToast("Please complete all registration fields.", "error");
@@ -118,25 +126,34 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-          const result = await auth.createUserWithEmailAndPassword(email, password);
+          const result = await auth.createUserWithEmailAndPassword(
+            email,
+            password,
+          );
           const user = result.user;
+          const userDocRole = isAuthorizedAdminEmail(email)
+            ? "admin"
+            : "public";
+
           const db = getFirestoreDb();
           if (db) {
             await db.collection("users").doc(user.uid).set(
               {
                 uid: user.uid,
                 name,
-                email,
-                role: "public",
+                email: email.toLowerCase(),
+                role: userDocRole,
                 active: true,
                 createdAt: new Date().toISOString(),
               },
               { merge: true },
             );
           }
+
           if (user && user.updateProfile) {
             await user.updateProfile({ displayName: name });
           }
+
           showToast("Account created. Redirecting...", "success");
           await handleAuthenticatedUser(user);
         } catch (error) {

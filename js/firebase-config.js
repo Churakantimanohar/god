@@ -8,11 +8,46 @@ const firebaseConfig = {
   measurementId: "G-JWJ9YGDHD2",
 };
 
+const AUTHORIZED_ADMIN_EMAILS = [
+  "admin@ganapathiseva.com",
+  "ganapathiadmin@gmail.com",
+  "churakantimanohar@gmail.com",
+  
+];
+
 if (typeof window !== "undefined") {
   window.firebaseConfig = firebaseConfig;
   window.__ganapathiFirebaseReady =
     Boolean(firebaseConfig.projectId) &&
     firebaseConfig.projectId !== "YOUR_PROJECT_ID";
+  window.AUTHORIZED_ADMIN_EMAILS = AUTHORIZED_ADMIN_EMAILS;
+}
+
+function getAuthorizedAdminEmails() {
+  const configured = Array.isArray(window?.AUTHORIZED_ADMIN_EMAILS)
+    ? window.AUTHORIZED_ADMIN_EMAILS
+    : [];
+  return [
+    ...new Set(
+      [...AUTHORIZED_ADMIN_EMAILS, ...configured]
+        .map((value) => String(value).trim().toLowerCase())
+        .filter(Boolean),
+    ),
+  ];
+}
+
+function isAuthorizedAdminEmail(email) {
+  if (!email) return false;
+  return getAuthorizedAdminEmails().includes(
+    String(email).trim().toLowerCase(),
+  );
+}
+
+function normalizeRoleName(value) {
+  const role = String(value || "public")
+    .trim()
+    .toLowerCase();
+  return ["admin", "committee", "public"].includes(role) ? role : "public";
 }
 
 function isFirebaseConfigured() {
@@ -60,8 +95,22 @@ async function getUserRoleFromFirestore(uid) {
   try {
     const snap = await db.collection("users").doc(uid).get();
     if (!snap.exists) return "public";
-    const role = (snap.data().role || "public").toLowerCase();
-    return ["admin", "committee", "public"].includes(role) ? role : "public";
+
+    const data = snap.data() || {};
+    const role = normalizeRoleName(data.role);
+    const email = String(data.email || "")
+      .trim()
+      .toLowerCase();
+
+    if (role === "admin" && !isAuthorizedAdminEmail(email)) {
+      return "public";
+    }
+
+    if (role === "committee" || role === "public" || role === "admin") {
+      return role;
+    }
+
+    return "public";
   } catch (error) {
     return "public";
   }
@@ -74,16 +123,50 @@ async function ensureUserProfileInFirestore(user) {
 
   const userRef = db.collection("users").doc(user.uid);
   const current = await userRef.get();
+  const email = String(user.email || "")
+    .trim()
+    .toLowerCase();
+  const role = isAuthorizedAdminEmail(email) ? "admin" : "public";
 
   if (!current.exists) {
     await userRef.set(
       {
         uid: user.uid,
         name: user.displayName || "Community User",
-        email: user.email || "",
-        role: "public",
+        email,
+        role,
         active: true,
         createdAt: new Date().toISOString(),
+      },
+      { merge: true },
+    );
+    return role;
+  }
+
+  const data = current.data() || {};
+  const storedRole = normalizeRoleName(data.role);
+  const safeRole =
+    storedRole === "admin" &&
+    !isAuthorizedAdminEmail(String(data.email || email))
+      ? "public"
+      : storedRole;
+
+  const resolvedRole =
+    role === "admin" || safeRole === "admin" ? "admin" : "public";
+
+  if (
+    safeRole !== storedRole ||
+    data.email !== email ||
+    data.name !== (user.displayName || data.name || "Community User")
+  ) {
+    await userRef.set(
+      {
+        uid: user.uid,
+        name: user.displayName || data.name || "Community User",
+        email,
+        role: resolvedRole,
+        active: true,
+        updatedAt: new Date().toISOString(),
       },
       { merge: true },
     );
