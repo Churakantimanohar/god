@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Donations | Ganapathi Seva</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body data-page="protected">
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="brand-wrap">
+            <div class="brand-mark">ॐ</div>
+            <div class="brand-text">
+              <h1>Ganapathi Seva</h1>
+              <small>2026 Festival</small>
+            </div>
+          </div>
+          <div class="topbar-actions">
+            <span class="user-pill" id="loggedUserLabel">Admin User</span>
+            <button class="btn btn-secondary" type="button" id="logoutButton">
+              Logout
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <h3>Navigation</h3>
+          <ul class="nav-list">
+            <li><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+            <li>
+              <a class="nav-link active" href="donations.html">Donations</a>
+            </li>
+            <li><a class="nav-link" href="expenses.html">Expenses</a></li>
+            <li><a class="nav-link" href="reports.html">Reports</a></li>
+            <li>
+              <a class="nav-link" href="festival-years.html">Festival Years</a>
+            </li>
+            <li><a class="nav-link" href="users.html">Users</a></li>
+            <li><a class="nav-link" href="settings.html">Settings</a></li>
+          </ul>
+        </aside>
+
+        <main class="content">
+          <section class="page-header">
+            <div>
+              <h2>Donations</h2>
+              <p>Track all community contributions and verification status</p>
+            </div>
+          </section>
+
+          <div class="grid-2">
+            <section class="card form-card">
+              <div class="panel-head">
+                <h3>Add Donation</h3>
+              </div>
+              <form id="donationForm">
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="donorName">Donor Name</label>
+                    <input
+                      id="donorName"
+                      name="donorName"
+                      type="text"
+                      placeholder="Ravi Kumar"
+                      required
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="amount">Amount</label>
+                    <input
+                      id="amount"
+                      name="amount"
+                      type="number"
+                      min="1"
+                      step="1"
+                      placeholder="5000"
+                      required
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="paymentMethod">Payment Method</label>
+                    <select id="paymentMethod" name="paymentMethod">
+                      <option>Cash</option>
+                      <option>UPI</option>
+                      <option>Bank Transfer</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="transactionId">Transaction/Reference ID</label>
+                    <input
+                      id="transactionId"
+                      name="transactionId"
+                      type="text"
+                      placeholder="UPI123456"
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="date">Date</label>
+                    <input id="date" name="date" type="date" required />
+                  </div>
+                  <div class="field">
+                    <label for="status">Status</label>
+                    <select id="status" name="status">
+                      <option>Pending</option>
+                      <option selected>Verified</option>
+                      <option>Rejected</option>
+                    </select>
+                  </div>
+                  <div class="field full">
+                    <label for="notes">Notes</label>
+                    <textarea
+                      id="notes"
+                      name="notes"
+                      rows="3"
+                      placeholder="Optional note or acknowledgment"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <button class="btn" type="submit">Save Donation</button>
+                </div>
+              </form>
+            </section>
+
+            <section class="card table-card">
+              <div class="panel-head">
+                <h3>Filters</h3>
+              </div>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="donationSearch">Search Donor</label>
+                  <input
+                    id="donationSearch"
+                    type="text"
+                    placeholder="Search donor name"
+                  />
+                </div>
+                <div class="field">
+                  <label for="donationStatusFilter">Status</label>
+                  <select id="donationStatusFilter">
+                    <option value="">All</option>
+                    <option>Pending</option>
+                    <option>Verified</option>
+                    <option>Rejected</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="donationMethodFilter">Payment Method</label>
+                  <select id="donationMethodFilter">
+                    <option value="">All</option>
+                    <option>Cash</option>
+                    <option>UPI</option>
+                    <option>Bank Transfer</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="donationDateFilter">Date</label>
+                  <input id="donationDateFilter" type="date" />
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <section class="card table-card" style="margin-top: 24px">
+            <div class="panel-head">
+              <h3>Donation Records</h3>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Donor Name</th>
+                    <th>Amount</th>
+                    <th>Payment Method</th>
+                    <th>Transaction ID</th>
+                    <th>Status</th>
+                    <th>Added By</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="donationTableBody"></tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/donations.js"></script>
+  </body>
+</html>

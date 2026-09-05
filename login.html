@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Ganapathi Seva</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body data-page="login">
+    <div class="login-wrap">
+      <div class="login-box">
+        <div class="brand-wrap" style="margin-bottom: 18px">
+          <div class="brand-mark">ॐ</div>
+          <div class="brand-text">
+            <h1>Ganapathi Seva</h1>
+            <small>Festival Donation &amp; Expense Transparency</small>
+          </div>
+        </div>
+
+        <h1>Login</h1>
+        <p>Use your community account to access the financial dashboard.</p>
+
+        <div id="loginSection">
+          <button
+            id="googleLoginButton"
+            class="btn btn-secondary"
+            type="button"
+            style="width: 100%; margin-bottom: 16px"
+          >
+            Continue with Google
+          </button>
+
+          <div
+            class="inline-row"
+            style="margin: 10px 0 18px; color: #6b7280; font-size: 0.85rem"
+          >
+            <span>---------------- OR ----------------</span>
+          </div>
+
+          <form id="loginForm" class="login-form">
+            <div class="field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                type="email"
+                placeholder="name@example.com"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="password">Password</label>
+              <input
+                id="password"
+                type="password"
+                placeholder="Enter password"
+                required
+              />
+            </div>
+
+            <button class="btn" type="submit" style="width: 100%">Login</button>
+
+            <div class="inline-row">
+              <a href="#" id="forgotPasswordLink" class="link-text"
+                >Forgot Password?</a
+              >
+              <a href="transparency.html?year=2026" class="link-text"
+                >Public Page</a
+              >
+            </div>
+          </form>
+        </div>
+
+        <div id="registerSection" style="display: none; margin-top: 16px">
+          <h3>Create Account</h3>
+          <form id="registerForm" class="login-form">
+            <div class="field">
+              <label for="registerName">Name</label>
+              <input
+                id="registerName"
+                type="text"
+                placeholder="Your full name"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="registerEmail">Email</label>
+              <input
+                id="registerEmail"
+                type="email"
+                placeholder="name@example.com"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="registerPassword">Password</label>
+              <input
+                id="registerPassword"
+                type="password"
+                placeholder="Enter password"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="registerConfirmPassword">Confirm Password</label>
+              <input
+                id="registerConfirmPassword"
+                type="password"
+                placeholder="Re-enter password"
+                required
+              />
+            </div>
+
+            <button class="btn" type="submit" style="width: 100%">
+              Create Account
+            </button>
+          </form>
+        </div>
+
+        <div class="inline-row" style="margin-top: 18px">
+          <span>Don't have an account?</span>
+          <a href="#" id="createAccountButton" class="link-text"
+            >Create Account</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+  </body>
+</html>

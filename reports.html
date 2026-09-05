@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reports | Ganapathi Seva</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body data-page="protected">
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="brand-wrap">
+            <div class="brand-mark">ॐ</div>
+            <div class="brand-text">
+              <h1>Ganapathi Seva</h1>
+              <small>2026 Festival</small>
+            </div>
+          </div>
+          <div class="topbar-actions">
+            <span class="user-pill" id="loggedUserLabel">Admin User</span>
+            <button class="btn btn-secondary" type="button" id="logoutButton">
+              Logout
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <h3>Navigation</h3>
+          <ul class="nav-list">
+            <li><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+            <li><a class="nav-link" href="donations.html">Donations</a></li>
+            <li><a class="nav-link" href="expenses.html">Expenses</a></li>
+            <li><a class="nav-link active" href="reports.html">Reports</a></li>
+            <li>
+              <a class="nav-link" href="festival-years.html">Festival Years</a>
+            </li>
+            <li><a class="nav-link" href="users.html">Users</a></li>
+            <li><a class="nav-link" href="settings.html">Settings</a></li>
+          </ul>
+        </aside>
+
+        <main class="content">
+          <section class="page-header">
+            <div>
+              <h2>Financial Report</h2>
+              <p>Festival year summary and transparent totals</p>
+            </div>
+          </section>
+
+          <section class="card report-card">
+            <div class="report-box">
+              <h3>GANAPATHI SEVA</h3>
+              <p class="muted" style="margin-top: -8px">
+                FINANCIAL REPORT • 2026
+              </p>
+
+              <div class="report-row">
+                <span>Total Donations</span
+                ><strong id="reportDonations">₹0</strong>
+              </div>
+              <div class="report-row">
+                <span>Total Expenses</span
+                ><strong id="reportExpenses">₹0</strong>
+              </div>
+              <div class="report-row">
+                <span>Closing Balance</span
+                ><strong id="reportBalance">₹0</strong>
+              </div>
+              <div class="report-row">
+                <span>Donation Count</span
+                ><strong id="reportDonationCount">0</strong>
+              </div>
+              <div class="report-row">
+                <span>Expense Count</span
+                ><strong id="reportExpenseCount">0</strong>
+              </div>
+
+              <div style="margin-top: 18px">
+                <h3>Expense Breakdown</h3>
+                <div id="expenseBreakdownList"></div>
+              </div>
+
+              <div class="report-action-row">
+                <button class="btn" type="button" onclick="window.print()">
+                  Print Report
+                </button>
+                <button
+                  class="btn btn-secondary"
+                  type="button"
+                  id="downloadReportBtn"
+                >
+                  Download Report
+                </button>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/reports.js"></script>
+  </body>
+</html>

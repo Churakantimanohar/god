@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transparency | Ganapathi Seva</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator/qrcode.js"></script>
+  </head>
+  <body>
+    <div class="public-shell">
+      <div class="public-card card">
+        <div class="brand-wrap">
+          <div class="brand-mark">ॐ</div>
+          <div class="brand-text">
+            <h1>GANAPATHI SEVA</h1>
+            <small>Festival Financial Transparency</small>
+          </div>
+        </div>
+
+        <div class="page-header" style="margin-top: 18px; margin-bottom: 10px">
+          <div>
+            <h2 id="festivalTitle">2026</h2>
+            <p>Verified financial summary</p>
+          </div>
+        </div>
+
+        <div class="public-summary">
+          <article class="card metric-card">
+            <span class="label">Total Donations</span>
+            <p class="value" id="publicDonations">₹0</p>
+          </article>
+          <article class="card metric-card">
+            <span class="label">Total Expenses</span>
+            <p class="value" id="publicExpenses">₹0</p>
+          </article>
+          <article class="card metric-card">
+            <span class="label">Remaining Balance</span>
+            <p class="value" id="publicBalance">₹0</p>
+          </article>
+        </div>
+
+        <div class="grid-2">
+          <section class="public-section">
+            <h3>Donations</h3>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Donor</th>
+                    <th>Amount</th>
+                    <th>Payment</th>
+                  </tr>
+                </thead>
+                <tbody id="publicDonationsTable"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="public-section">
+            <div class="qr-box">
+              <div id="qrCodeWrapper"></div>
+            </div>
+            <p class="muted" style="margin-top: 12px; text-align: center">
+              Scan to view festival accounts
+            </p>
+          </section>
+        </div>
+
+        <section class="public-section">
+          <h3>Expenses</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Category</th>
+                  <th>Description</th>
+                  <th>Amount</th>
+                  <th>Bill</th>
+                </tr>
+              </thead>
+              <tbody id="publicExpensesTable"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <p class="muted" style="margin-top: 18px" id="lastUpdatedText">
+          Last Updated: —
+        </p>
+      </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/transparency.js"></script>
+  </body>
+</html>

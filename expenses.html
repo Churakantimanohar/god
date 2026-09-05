@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expenses | Ganapathi Seva</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body data-page="protected">
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="brand-wrap">
+            <div class="brand-mark">ॐ</div>
+            <div class="brand-text">
+              <h1>Ganapathi Seva</h1>
+              <small>2026 Festival</small>
+            </div>
+          </div>
+          <div class="topbar-actions">
+            <span class="user-pill" id="loggedUserLabel">Admin User</span>
+            <button class="btn btn-secondary" type="button" id="logoutButton">
+              Logout
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <h3>Navigation</h3>
+          <ul class="nav-list">
+            <li><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+            <li><a class="nav-link" href="donations.html">Donations</a></li>
+            <li>
+              <a class="nav-link active" href="expenses.html">Expenses</a>
+            </li>
+            <li><a class="nav-link" href="reports.html">Reports</a></li>
+            <li>
+              <a class="nav-link" href="festival-years.html">Festival Years</a>
+            </li>
+            <li><a class="nav-link" href="users.html">Users</a></li>
+            <li><a class="nav-link" href="settings.html">Settings</a></li>
+          </ul>
+        </aside>
+
+        <main class="content">
+          <section class="page-header">
+            <div>
+              <h2>Expenses</h2>
+              <p>Track festival purchases and uploaded bills</p>
+            </div>
+          </section>
+
+          <div class="grid-2">
+            <section class="card form-card">
+              <div class="panel-head">
+                <h3>Add Expense</h3>
+              </div>
+              <form id="expenseForm">
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="expenseCategory">Category</label>
+                    <select id="expenseCategory" name="category">
+                      <option>Ganapathi Idol</option>
+                      <option>Decoration</option>
+                      <option>Sound System</option>
+                      <option>Lighting</option>
+                      <option>Food</option>
+                      <option>Prasadam</option>
+                      <option>Electricity</option>
+                      <option>Cultural Program</option>
+                      <option>Cleaning</option>
+                      <option>Transportation</option>
+                      <option>Permissions</option>
+                      <option>Miscellaneous</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="expenseDescription">Description</label>
+                    <input
+                      id="expenseDescription"
+                      name="description"
+                      type="text"
+                      required
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="vendorName">Vendor Name</label>
+                    <input id="vendorName" name="vendor" type="text" required />
+                  </div>
+                  <div class="field">
+                    <label for="expenseAmount">Amount</label>
+                    <input
+                      id="expenseAmount"
+                      name="amount"
+                      type="number"
+                      min="1"
+                      step="1"
+                      required
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="expensePaymentMethod">Payment Method</label>
+                    <select id="expensePaymentMethod" name="paymentMethod">
+                      <option>Cash</option>
+                      <option>UPI</option>
+                      <option>Bank Transfer</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="expenseDate">Date</label>
+                    <input id="expenseDate" name="date" type="date" required />
+                  </div>
+                  <div class="field full">
+                    <label for="expenseNotes">Notes</label>
+                    <textarea
+                      id="expenseNotes"
+                      name="notes"
+                      rows="3"
+                      placeholder="Optional expense notes"
+                    ></textarea>
+                  </div>
+                  <div class="field full">
+                    <label for="billUpload">Upload Bill / Receipt</label>
+                    <input id="billUpload" type="file" accept="image/*,.pdf" />
+                  </div>
+                  <div class="field full">
+                    <label for="expenseStatus">Status</label>
+                    <select id="expenseStatus" name="status">
+                      <option>Pending</option>
+                      <option selected>Verified</option>
+                      <option>Rejected</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <button class="btn" type="submit">Save Expense</button>
+                </div>
+              </form>
+            </section>
+
+            <section class="card table-card">
+              <div class="panel-head">
+                <h3>Filters</h3>
+              </div>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="expenseSearch"
+                    >Search description or vendor</label
+                  >
+                  <input
+                    id="expenseSearch"
+                    type="text"
+                    placeholder="Search expense"
+                  />
+                </div>
+                <div class="field">
+                  <label for="expenseCategoryFilter">Category</label>
+                  <select id="expenseCategoryFilter">
+                    <option value="">All</option>
+                    <option>Ganapathi Idol</option>
+                    <option>Decoration</option>
+                    <option>Sound System</option>
+                    <option>Food</option>
+                    <option>Electricity</option>
+                    <option>Miscellaneous</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="expenseStatusFilter">Status</label>
+                  <select id="expenseStatusFilter">
+                    <option value="">All</option>
+                    <option>Pending</option>
+                    <option>Verified</option>
+                    <option>Rejected</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="expenseDateFilter">Date</label>
+                  <input id="expenseDateFilter" type="date" />
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <section class="card table-card" style="margin-top: 24px">
+            <div class="panel-head">
+              <h3>Expense Records</h3>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Vendor</th>
+                    <th>Amount</th>
+                    <th>Payment Method</th>
+                    <th>Bill</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="expenseTableBody"></tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/expenses.js"></script>
+  </body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings | Ganapathi Seva</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body data-page="protected">
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="brand-wrap">
+            <div class="brand-mark">ॐ</div>
+            <div class="brand-text">
+              <h1>Ganapathi Seva</h1>
+              <small>2026 Festival</small>
+            </div>
+          </div>
+          <div class="topbar-actions">
+            <span class="user-pill" id="loggedUserLabel">Admin User</span>
+            <button class="btn btn-secondary" type="button" id="logoutButton">
+              Logout
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <h3>Navigation</h3>
+          <ul class="nav-list">
+            <li><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+            <li><a class="nav-link" href="donations.html">Donations</a></li>
+            <li><a class="nav-link" href="expenses.html">Expenses</a></li>
+            <li><a class="nav-link" href="reports.html">Reports</a></li>
+            <li>
+              <a class="nav-link" href="festival-years.html">Festival Years</a>
+            </li>
+            <li><a class="nav-link" href="users.html">Users</a></li>
+            <li>
+              <a class="nav-link active" href="settings.html">Settings</a>
+            </li>
+          </ul>
+        </aside>
+
+        <main class="content">
+          <section class="page-header">
+            <div>
+              <h2>Settings</h2>
+              <p>Configure festival account preferences</p>
+            </div>
+          </section>
+
+          <section class="card form-card">
+            <div class="panel-head">
+              <h3>Profile & Transparency</h3>
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label>Festival Name</label>
+                <input type="text" value="Ganapathi Festival 2026" />
+              </div>
+              <div class="field">
+                <label>Public Transparency URL</label>
+                <input type="text" value="/transparency.html?year=2026" />
+              </div>
+              <div class="field full">
+                <label>Community Note</label>
+                <textarea rows="4">
+All donations and expenses shown on this dashboard are verified for transparency and public accountability.</textarea
+                >
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn" type="button">Save Settings</button>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+  </body>
+</html>

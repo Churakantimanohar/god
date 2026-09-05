@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Users | Ganapathi Seva</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body data-page="protected">
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="brand-wrap">
+            <div class="brand-mark">ॐ</div>
+            <div class="brand-text">
+              <h1>Ganapathi Seva</h1>
+              <small>2026 Festival</small>
+            </div>
+          </div>
+          <div class="topbar-actions">
+            <span class="user-pill" id="loggedUserLabel">Admin User</span>
+            <button class="btn btn-secondary" type="button" id="logoutButton">
+              Logout
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <h3>Navigation</h3>
+          <ul class="nav-list">
+            <li><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+            <li><a class="nav-link" href="donations.html">Donations</a></li>
+            <li><a class="nav-link" href="expenses.html">Expenses</a></li>
+            <li><a class="nav-link" href="reports.html">Reports</a></li>
+            <li>
+              <a class="nav-link" href="festival-years.html">Festival Years</a>
+            </li>
+            <li><a class="nav-link active" href="users.html">Users</a></li>
+            <li><a class="nav-link" href="settings.html">Settings</a></li>
+          </ul>
+        </aside>
+
+        <main class="content">
+          <section class="page-header">
+            <div>
+              <h2>Users</h2>
+              <p>Manage community access and roles</p>
+            </div>
+          </section>
+
+          <section class="card table-card">
+            <div class="panel-head">
+              <h3>Account Roles</h3>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="userTableBody"></tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/users.js"></script>
+  </body>
+</html>

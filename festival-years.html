@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Festival Years | Ganapathi Seva</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body data-page="protected">
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="brand-wrap">
+            <div class="brand-mark">ॐ</div>
+            <div class="brand-text">
+              <h1>Ganapathi Seva</h1>
+              <small>2026 Festival</small>
+            </div>
+          </div>
+          <div class="topbar-actions">
+            <span class="user-pill" id="loggedUserLabel">Admin User</span>
+            <button class="btn btn-secondary" type="button" id="logoutButton">
+              Logout
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <h3>Navigation</h3>
+          <ul class="nav-list">
+            <li><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+            <li><a class="nav-link" href="donations.html">Donations</a></li>
+            <li><a class="nav-link" href="expenses.html">Expenses</a></li>
+            <li><a class="nav-link" href="reports.html">Reports</a></li>
+            <li>
+              <a class="nav-link active" href="festival-years.html"
+                >Festival Years</a
+              >
+            </li>
+            <li><a class="nav-link" href="users.html">Users</a></li>
+            <li><a class="nav-link" href="settings.html">Settings</a></li>
+          </ul>
+        </aside>
+
+        <main class="content">
+          <section class="page-header">
+            <div>
+              <h2>Festival Years</h2>
+              <p>Create and manage annual festival records</p>
+            </div>
+          </section>
+
+          <section class="card form-card">
+            <div class="panel-head">
+              <h3>Create Festival</h3>
+            </div>
+            <form id="festivalForm">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="festivalYear">Year</label>
+                  <input
+                    id="festivalYear"
+                    type="number"
+                    min="2024"
+                    max="2100"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="festivalName">Festival Name</label>
+                  <input
+                    id="festivalName"
+                    type="text"
+                    placeholder="Ganapathi Festival 2027"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label for="festivalStart">Start Date</label>
+                  <input id="festivalStart" type="date" required />
+                </div>
+                <div class="field">
+                  <label for="festivalEnd">End Date</label>
+                  <input id="festivalEnd" type="date" required />
+                </div>
+                <div class="field">
+                  <label for="openingBalance">Opening Balance</label>
+                  <input
+                    id="openingBalance"
+                    type="number"
+                    min="0"
+                    step="1"
+                    value="0"
+                  />
+                </div>
+                <div class="field">
+                  <label for="activeFestival">Active</label>
+                  <select id="activeFestival">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-actions">
+                <button class="btn" type="submit">Create Festival</button>
+              </div>
+            </form>
+          </section>
+
+          <section class="card table-card" style="margin-top: 24px">
+            <div class="panel-head">
+              <h3>Festival List</h3>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Year</th>
+                    <th>Festival Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Opening Balance</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="festivalTableBody"></tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/festivals.js"></script>
+  </body>
+</html>

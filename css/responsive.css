@@ -1,0 +1,43 @@
+@media (max-width: 640px) {
+  .container,
+  .topbar-inner,
+  .layout {
+    width: min(100% - 20px, 1200px);
+  }
+
+  .brand-text h1 {
+    font-size: 1rem;
+  }
+
+  .nav-link {
+    padding: 0.8rem 0.6rem;
+    font-size: 0.95rem;
+  }
+
+  .metric-card .value {
+    font-size: 1.4rem;
+  }
+
+  table {
+    min-width: 620px;
+  }
+
+  .public-shell {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .login-box {
+    padding: 24px 18px;
+  }
+
+  .btn,
+  .tiny-btn {
+    min-height: 44px;
+  }
+
+  .page-header h2 {
+    font-size: 1.55rem;
+  }
+}
