@@ -17,6 +17,22 @@ document.addEventListener("DOMContentLoaded", () => {
     ? "../committee/dashboard.html"
     : "committee/dashboard.html";
 
+  function updateLoggedUserLabel(user, role = "public") {
+    const label = document.getElementById("loggedUserLabel");
+    if (!label) return;
+
+    const displayName = user?.displayName || user?.email || "Community User";
+    const normalized = (role || "public").toLowerCase();
+    const roleLabel =
+      normalized === "admin"
+        ? "Admin"
+        : normalized === "committee"
+          ? "Committee"
+          : "User";
+
+    label.textContent = `${displayName} • ${roleLabel}`;
+  }
+
   async function redirectByRole(role) {
     const normalized = (role || "public").toLowerCase();
     if (normalized === "admin") {
@@ -37,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const role = await ensureUserProfileInFirestore(user);
+    updateLoggedUserLabel(user, role);
     if (loginPage) {
       await redirectByRole(role);
       return;
@@ -69,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
       auth.onAuthStateChanged(async (user) => {
         if (!user) return;
         const role = await ensureUserProfileInFirestore(user);
+        updateLoggedUserLabel(user, role);
         await redirectByRole(role);
       });
     }
@@ -202,6 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const role = await ensureUserProfileInFirestore(user);
+      updateLoggedUserLabel(user, role);
       if (adminPage && role !== "admin") {
         showToast("Access denied.", "error");
         await redirectByRole(role);
